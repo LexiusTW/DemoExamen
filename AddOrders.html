@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AddOrder</title>
+</head>
+<body>
+    <div>
+        <a href="GetOrders.html">Список заявок</a>
+        <a href="AddOrder.html">Добавление заявки</a>
+    </div>
+    <h2>Создание заявки</h2>
+    <form action="http://127.0.0.1:8000/" method="post">
+        <input required name="number" type="number" placeholder="Номер заявки">
+        <input required name="startDate" type="date" placeholder="Дата добавления">
+        <input required name="orgTechType" placeholder="Вид оргтехники">
+        <input required name="orgTechModel" placeholder="Модель">
+        <input required name="problemDescryption" placeholder="Описание проблемы">
+        <input required name="FIO" placeholder="ФИО"> 
+        <input required name="phoneNumber" type="tel" pattern="[\+]\d{1}[\(]\d{3}[\)]\d{3}[\-]\d{2}[\-]\d{2}" minlength="16" maxlength="16" placeholder="+7(999)999-99-99">
+        <select name="requestStatus" >
+            <option value="Новая заявка">Новая заявка</option>
+            <option value="В процессе ремонта">В процессе ремонта</option>
+            <option value="Завершена">Завершена</option>
+        </select>
+        <input type="submit" value="Send" />
+    </form>
+</body>
+</html>

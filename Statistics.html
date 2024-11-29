@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <a href="GetOrders.html">Список заявок</a>
+        <a href="AddOrder.html">Добавление заявки</a>
+    </div>
+    <table id="ordersTable" border="1">
+        <tr>
+            <th>Количество завершенных</th>
+            <th>Среднее время</th>
+            <th>Статистика типа проблем</th>
+        </tr>
+    </table>
+    <script>
+        fetchOrders();
+
+        async function fetchOrders() {
+                let response = await fetch('http://127.0.0.1:8000/get/statistic', {method: "GET"});
+                let orders = await response.json();
+
+                let tableBody = document.getElementById('ordersTable');
+
+                tableBody.innerHTML(`
+                <tr>
+                    <td>${orders.count_complete}
+                </tr>`)
+            }
+
+    </script>
+</body>
+</html>

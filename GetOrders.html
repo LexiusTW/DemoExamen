@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Бронирование отелей</title>
+</head>
+<body>
+    <div>
+        <a href="GetOrders.html">Список заявок</a>
+        <a href="AddOrder.html">Добавление заявки</a>
+    </div>
+    <table id="ordersTable" border="1">
+        <tr>
+            <th>Номер заявки</th>
+            <th>Дата добавления</th>
+            <th>Вид оргтехники</th>
+            <th>Модель</th>
+            <th>Описание проблемы</th>
+            <th>ФИО клиента</th>
+            <th>Номер телефона</th>
+            <th>Статус заявки</th>
+            <th>Дата завершения</th>
+            <th>Мастер</th>
+        </tr>
+    </table>
+    <script>
+        fetchOrders();
+
+        async function fetchOrders() {
+                let response = await fetch('http://127.0.0.1:8000/', {method: "GET"});
+                let orders = await response.json();
+
+                let tableBody = document.getElementById('ordersTable');
+
+                orders.forEach(o => {
+                    let row = document.createElement('tr');
+                    
+                    row.innerHTML = `
+                        <td>${o.number}</td>
+                        <td>${o.startDate}</td>
+                        <td>${o.orgTechType}</td>
+                        <td>${o.orgTechModel}</td>
+                        <td>${o.problemDescryption}</td>
+                        <td>${o.FIO}</td>
+                        <td>${o.phoneNumber}</td>
+                        <td>${o.requestStatus}</td>
+                        <td>${o.completionDate}</td>
+                        <td>${o.master}</td>
+                    `;
+                    tableBody.append(row);
+                });
+        }
+
+    </script>
+</body>
+</html>
